@@ -32,7 +32,7 @@ Installation
     user = 'postfixadmin'
     passwd = '<postfixadmin password>'
 
-    tmpl_dir = '/opt/postfix_getmail'
+    tmpl_dir = '/opt/getmail_postfix'
     rc_path = '/etc/getmail'
     base_path = '/var/vmail/'
 
@@ -49,9 +49,9 @@ Program and all its files are in */opt/postfix_getmail*
 * create soft link to getmail_postfix.py::
 
     cd /etc/cron.10min
-    ln -s /opt/postfix_getmail/getmail_postfix.py getmail_postfix
+    ln -s /opt/getmail_postfix/getmail_postfix.py getmail_postfix
 
 * make getmail_postfix.py executable::
 
-    chmod +x /opt/postfix_getmail/getmail_postfix.py
+    chmod +x /opt/getmailpostfix/getmail_postfix.py
 
