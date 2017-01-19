@@ -8,16 +8,19 @@ If getmailrc file is outdated it will be recreated with new values.
 
 Installation
 ============
-* Install required modules (In this example PostfixAdmin uses MySQL database.):
+* Install required modules (In this example PostfixAdmin uses MySQL database.)::
 
     pip install pony
     pip install jinja2
     pip install PyMySQL
 
-..note:: Script is tested with **Python 3.4** but it should work with **Python 2.6+** also.
+.. note:: Script is tested with **Python 3.4** but it should work with **Python 2.6+** also.
          In case both of Python versions are installed you probably need to use pip3 instead of pip
 
-* Download (clone) this files.
+* Download (clone) this program::
+    
+    git clone https://github.com/andreinl/getmail_postfix.git
+    
 * Create config.py. It should look like this::
 
     from pony import orm
@@ -39,16 +42,16 @@ Installation
 In this example Getmail rc files are in */etc/getmail* and emails are in */var/vmail/*.
 Program and all its files are in */opt/postfix_getmail*
 
-* create /etc/cron.10min and add in /etc/crontab this line:
+* create /etc/cron.10min and add in /etc/crontab this line::
 
     */10 *  * * *   root    cd / && run-parts --report /etc/cron.10min
 
-* create soft link to getmail_postfix.py:
+* create soft link to getmail_postfix.py::
 
     cd /etc/cron.10min
     ln -s /opt/postfix_getmail/getmail_postfix.py getmail_postfix
 
-* make getmail_postfix.py executable:
+* make getmail_postfix.py executable::
 
     chmod +x /opt/postfix_getmail/getmail_postfix.py
 
