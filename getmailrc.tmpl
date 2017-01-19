@@ -1,0 +1,39 @@
+[options]
+verbose = 0
+read_all = {% if box.fetchall %}true{% else %}false{% endif %}
+
+delete = {% if box.keep %}false{% else %}true{% endif %}
+
+message_log = {{ context.rc_path }}/log
+
+[retriever]
+{% if box.usessl %}
+type = SimplePOP3SSLRetriever
+{% else %}
+type = SimplePOP3Retriever
+{% endif %}
+server = {{ box.src_server }}
+timeout = 120
+username = {{ box.src_user }}
+password = {{ context.src_password }}
+
+{% if context.multi %}
+[destination]
+type = MultiDestination
+destinations = ('[archive-box]', '[user-box]')
+
+[archive-box]
+type = Maildir
+path = {{ context.base_path }}{{box.domain}}/archive/
+user = vmail
+
+[user-box]
+type = Maildir
+path = {{ context.base_path }}{{box.domain}}/{{ context.mailbox_user }}/
+user = vmail
+{% else %}
+[destination]
+type = Maildir
+path = {{ context.base_path }}{{ box.domain }}/{{ context.mailbox_user }}/
+user = vmail
+{% endif %}
