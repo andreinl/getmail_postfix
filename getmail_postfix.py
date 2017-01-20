@@ -79,6 +79,7 @@ if __name__ == "__main__":
         os.mkdir(rc_path)
 
     if os.path.isfile(os.path.join(rc_path, 'stop')):
+        logger.debug("Getmail is Stopped, remove /etc/getmail/stop to reactivate", extra={'user': '-'})
         sys.exit()
 
     if is_running():
