@@ -13,7 +13,7 @@ from datetime import datetime
 from base64 import b64decode
 from jinja2 import Environment, FileSystemLoader
 import os
-from config import debug, tmpl_dir, rc_path, database
+from config import debug, tmpl_dir, rc_path, database, base_path
 import subprocess
 import logging
 import sys
