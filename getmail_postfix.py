@@ -107,6 +107,5 @@ if __name__ == "__main__":
 
             if os.path.isfile(os.path.join(rc_path, 'stop')):
                 logger.debug("Getmail is Stopped, remove /etc/getmail/stop to reactivate", extra={'user': '-'})
-                sys.exit()
             else:
                 subprocess.call(['/usr/bin/getmail', '-g', rc_path, '-r', rc_file_name])
