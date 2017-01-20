@@ -78,10 +78,6 @@ if __name__ == "__main__":
     if not os.path.isdir(rc_path):
         os.mkdir(rc_path)
 
-    if os.path.isfile(os.path.join(rc_path, 'stop')):
-        logger.debug("Getmail is Stopped, remove /etc/getmail/stop to reactivate", extra={'user': '-'})
-        sys.exit()
-
     if is_running():
         logger.debug("Getmail is running, exiting now", extra={'user': '-'})
         sys.exit()
@@ -109,4 +105,8 @@ if __name__ == "__main__":
             else:
                 logger.debug("rc file for '%s' user is not changed", mailbox_user, extra=context)
 
-            subprocess.call(['/usr/bin/getmail', '-g', rc_path, '-r', rc_file_name])
+            if os.path.isfile(os.path.join(rc_path, 'stop')):
+                logger.debug("Getmail is Stopped, remove /etc/getmail/stop to reactivate", extra={'user': '-'})
+                sys.exit()
+            else:
+                subprocess.call(['/usr/bin/getmail', '-g', rc_path, '-r', rc_file_name])
